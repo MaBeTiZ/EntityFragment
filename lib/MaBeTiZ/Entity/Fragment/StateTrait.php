@@ -19,7 +19,7 @@ trait StateTrait
 
     /**
      * @var int
-     * @ORM\Column(name="state", type="integer", nullable="false")
+     * @ORM\Column(name="state", type="integer", nullable=false)
      */
     private $state;
 

@@ -12,7 +12,7 @@ trait StatusTrait
 {
     /**
      * @var bool
-     * @ORM\Column(name="status", type="boolean", nullable="false")
+     * @ORM\Column(name="status", type="boolean", nullable=false)
      */
     private $status;
 
