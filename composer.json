@@ -1,0 +1,21 @@
+{
+    "name": "mabetiz/entity-fragment",
+    "description": "Reusable traits for Symfony Entities",
+    "type": "library",
+    "require": {
+        "php": "^7.1",
+        "doctrine/orm": "^2.6",
+        "gedmo/doctrine-extensions": "^2.4"
+    },
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "ThibaultPelloquin@MaBeTiZ",
+            "homepage": "https://github.com/orgs/MaBeTiZ/people/ThibaultPelloquin",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "MaBeTiZ\\Entity\\Fragment\\": "lib/MaBeTiZ/Entity/Fragment" }
+    }
+}
