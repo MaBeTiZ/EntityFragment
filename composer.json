@@ -3,7 +3,7 @@
     "description": "Reusable traits for Symfony Entities",
     "type": "library",
     "require": {
-        "php": "^7.1",
+        "php": "^7.1.3",
         "doctrine/orm": "^2.6",
         "gedmo/doctrine-extensions": "^2.4"
     },

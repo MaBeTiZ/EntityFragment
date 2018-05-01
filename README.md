@@ -1,8 +1,8 @@
-# EntityTrait
+# EntityFragment
 
-Provides reusable features as Traits for Entities.
+Provides reusable features as Traits for Entities in Symfony 4.
 
-Using Doctrine.
+Uses Doctrine.
 
 ## List of available fragments (Traits)
 
