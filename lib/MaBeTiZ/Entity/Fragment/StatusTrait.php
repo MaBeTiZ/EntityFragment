@@ -38,4 +38,27 @@ trait StatusTrait
     {
         return $this->status;
     }
+
+    /**
+     * Aliasing
+     */
+
+    public function enable(): self
+    {
+        $this->status = true;
+
+        return $this;
+    }
+
+    public function disable(): self
+    {
+        $this->status = false;
+
+        return $this;
+    }
+
+    public function isEnabled(): ?bool
+    {
+        return $this->status;
+    }
 }
