@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait StatusTrait
 {
     /**
-     * @var bool
+     * @var bool|null
      * @ORM\Column(name="status", type="boolean", nullable=true)
      */
     private $status;
@@ -40,7 +40,7 @@ trait StatusTrait
     }
 
     /**
-     * Aliasing
+     * Additional and aliasing functions
      */
 
     public function enable(): self
