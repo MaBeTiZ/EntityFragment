@@ -28,14 +28,11 @@ trait StateTrait
      *
      * @param  int|null $state
      * @return self
-     * @throws \Exception
+     * @throws Exception
      */
     public function setState(?int $state = null): self
     {
-        if (!empty($state) && !array_key_exists($state, static::$availableStates)) {
-            $statesAsString = implode(', ', array_keys(static::$availableStates));
-            throw new Exception("Given state ({$state}) is not in the available states ({$statesAsString}).");
-        }
+        self::validateState($state);
 
         $this->state = $state;
 
@@ -50,5 +47,30 @@ trait StateTrait
     public function getState(): ?int
     {
         return $this->state;
+    }
+
+    /**
+     * Returns available states.
+     *
+     * @return array|null
+     */
+    public static function getAvailableStates(): ?array
+    {
+        return static::$availableStates;
+    }
+
+    /**
+     * @param int|null $state
+     * @return bool
+     * @throws Exception
+     */
+    private static function validateState(?int $state): ?bool
+    {
+        if (!is_null($state) && !array_key_exists($state, static::$availableStates)) {
+            $statesAsString = implode(', ', array_keys(static::$availableStates));
+            throw new Exception("Given state ({$state}) is not in the available states ({$statesAsString}).");
+        }
+
+        return true;
     }
 }
