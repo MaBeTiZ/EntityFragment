@@ -12,30 +12,28 @@ use Exception;
 trait StateTrait
 {
     /**
-     * @var array Available states to define in parent entity
-     *            /!\ Please do NOT use the 0 key ! (start at 1)
-     */
-    static protected $availableStates;
-
-    /**
      * @var int
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
     private $state;
 
     /**
+     * @var array Available states to define in parent entity
+     *            /!\ This is not a field of the entity
+     *            /!\ Please do NOT use the 0 key ! (start at 1)
+     */
+    static protected $availableStates;
+
+    /**
      * Sets state.
      *
      * @param  int|null $state
      * @return self
-     * @throws \Exception
+     * @throws Exception
      */
     public function setState(?int $state = null): self
     {
-        if (!empty($state) && !array_key_exists($state, static::$availableStates)) {
-            $statesAsString = implode(', ', array_keys(static::$availableStates));
-            throw new Exception("Given state ({$state}) is not in the available states ({$statesAsString}).");
-        }
+        self::validateState($state);
 
         $this->state = $state;
 
@@ -50,5 +48,34 @@ trait StateTrait
     public function getState(): ?int
     {
         return $this->state;
+    }
+
+    /**
+     * Validation functions
+     */
+
+    /**
+     * Returns available states.
+     *
+     * @return array|null
+     */
+    public static function getAvailableStates(): ?array
+    {
+        return static::$availableStates;
+    }
+
+    /**
+     * @param int|null $state
+     * @return bool
+     * @throws Exception
+     */
+    private static function validateState(?int $state): ?bool
+    {
+        if (!is_null($state) && !array_key_exists($state, static::$availableStates)) {
+            $statesAsString = implode(', ', array_keys(static::$availableStates));
+            throw new Exception("Given state ($state) is not in the available states ({$statesAsString}).");
+        }
+
+        return true;
     }
 }
