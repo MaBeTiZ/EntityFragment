@@ -14,6 +14,7 @@ trait BirthDateTrait
 {
     /**
      * @var DateTime
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     private $birthDate;
 
