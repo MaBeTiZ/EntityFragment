@@ -19,6 +19,15 @@ trait BirthDateTrait
     private $birthDate;
 
     /**
+     * @var int
+     */
+    private static $minBirthYear = 1900;
+
+    /**
+     * @var int
+     */
+    private static $maxBirthYear = 2018;
+
      * @return DateTime|null
      */
     public function getBirthDate(): ?DateTime
@@ -29,9 +38,12 @@ trait BirthDateTrait
     /**
      * @param DateTime|null $birthDate
      * @return self
+     * @throws Exception
      */
     public function setBirthDate(?DateTime $birthDate): self
     {
+        self::validateBirthDate($birthDate);
+
         $this->birthDate = $birthDate;
 
         return $this;
@@ -70,5 +82,23 @@ trait BirthDateTrait
         }
 
         return null;
+    }
+
+    /**
+     * @param DateTime|null $birthDate
+     * @return bool|null
+     * @throws Exception
+     */
+    public static function validateBirthDate(?DateTime $birthDate): ?bool
+    {
+        if (is_a($birthDate, 'DateTime')
+            && ((int)$birthDate->format('Y') < self::$minBirthYear || (int)$birthDate->format('Y') > self::$maxBirthYear)
+        ) {
+            $minBirthYear = (string)self::$minBirthYear;
+            $maxBirthYear = (string)self::$maxBirthYear;
+            throw new Exception("The given birth date ({$birthDate->format('Y-m-d')}) is not valid. It must be between $minBirthYear and $maxBirthYear.");
+        }
+
+        return true;
     }
 }
