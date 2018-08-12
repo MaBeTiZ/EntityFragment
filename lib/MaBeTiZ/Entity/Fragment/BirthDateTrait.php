@@ -69,7 +69,7 @@ trait BirthDateTrait
      * @param DateTime|null $date If null, checking for today.
      * @return bool|null bool(true): "yes", bool(false): "no", null: "don't know".
      */
-    public function isBirthday(?DateTime $date): ?bool
+    public function isBirthday(?DateTime $date = null): ?bool
     {
         if (is_null($date)) {
             $date = new DateTime('now');
