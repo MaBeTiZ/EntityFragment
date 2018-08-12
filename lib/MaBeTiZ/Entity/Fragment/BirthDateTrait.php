@@ -28,6 +28,7 @@ trait BirthDateTrait
      */
     private static $maxBirthYear = 2018;
 
+    /**
      * @return DateTime|null
      */
     public function getBirthDate(): ?DateTime
